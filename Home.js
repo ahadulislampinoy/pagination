@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+iimport React, { useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import Pagination from "./Pagination";
 
@@ -6,6 +6,7 @@ const Home = () => {
   const memes = useLoaderData();
   const [search, setSearch] = useState("");
 
+  // Pagination start
   const [currentPage, setCurrentPage] = useState(1);
   const [memePerPage] = useState(10);
 
@@ -14,6 +15,7 @@ const Home = () => {
   const currentMemes = memes.slice(indexOfFirstMeme, indexOfLastMeme);
 
   const handlePaginate = (number) => setCurrentPage(number);
+  // Pagination end
 
   return (
     <div>
@@ -30,6 +32,7 @@ const Home = () => {
         />
       </div>
       <div className="grid grid-cols-4 gap-8 p-8">
+        {/* Pagination */}
         {currentMemes
           .filter((meme) => {
             if (search === "") {
@@ -59,11 +62,13 @@ const Home = () => {
             </Link>
           ))}
       </div>
+      {/* Pagination start */}
       <Pagination
         memePerPage={memePerPage}
         totalMemes={memes.length}
         handlePaginate={handlePaginate}
       />
+      {/* Pagination end */}
     </div>
   );
 };
